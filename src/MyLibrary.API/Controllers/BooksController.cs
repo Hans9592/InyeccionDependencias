@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyLibrary.Application.DTOs;
 using MyLibrary.Application.Services;
+using MyLibrary.Application.Services.Interfaces;
+using MyLibrary.Domain.Entities;
 
 namespace MyLibrary.API.Controllers
 {
@@ -9,12 +11,17 @@ namespace MyLibrary.API.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        public BookService bookService = new BookService();
+       public IBookService bookService;
+
+       public BooksController(IBookService bookService)
+       {
+            this.bookService = bookService; 
+       }
 
         [HttpPost]
         public IActionResult AddBook([FromBody] BookDTO bookDto)
         {
-            var book = bookService.AddBook(bookDto);
+            var book = bookService.Addbook(bookDto);
             return Ok(book);
         }
 

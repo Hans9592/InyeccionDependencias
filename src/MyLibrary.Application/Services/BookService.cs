@@ -1,10 +1,11 @@
 using System;
 using MyLibrary.Application.DTOs;
+using MyLibrary.Application.Services.Interfaces;
 using MyLibrary.Domain.Entities;
 
 namespace MyLibrary.Application.Services;
 
-public class BookService
+public class BookService : IBookService
 {
    private List<Book>  _books;
 
@@ -67,5 +68,10 @@ public class BookService
 
         _books.Remove(book);
         return true;
+    }
+
+    public Book Addbook(BookDTO bookDto)
+    {
+        throw new NotImplementedException();
     }
 }
